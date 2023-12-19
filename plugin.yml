@@ -6,6 +6,8 @@ configuration:
   properties:
     flags:
       type: string
+    skip_on_retry:
+      type: boolean
     additionalProperties: false
   required:
     - flags

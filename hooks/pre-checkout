@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [ "${BUILDKITE_RETRY_COUNT:-0}" -gt 0 ] && [ "${BUILDKITE_PLUGIN_GIT_CLEAN_SKIP_ON_RETRY:-false}" = "true" ]; then
+    echo "~~~ Skipping git clean flags due to retry";
+    exit 0;
+fi
+
 echo "~~~ Setting git clean flags"
 
 export BUILDKITE_GIT_CLEAN_FLAGS="${BUILDKITE_PLUGIN_GIT_CLEAN_FLAGS}"
